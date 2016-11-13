@@ -1,0 +1,6 @@
+~/tmp/./robo & 
+sleep 200 && xterm -e ~/tmp/./go &
+
+
+
+

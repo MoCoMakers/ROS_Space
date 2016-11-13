@@ -14,13 +14,7 @@ launch = roslaunch.parent.ROSLaunchParent(uuid, ["srcsim", "qual1.launch"])
 import subprocess,os
 
 import roslib
-'''
-roslib.load_manifest('switch_control_mode')
-roslib.load_manifest('ihmc_ros_core')
-roslib.load_manifest('ihmc_ros_common')
-roslib.load_manifest('ihmc_ros_java_adapter')
-roslib.load_manifest('ihmc_msgs')
-'''
+
 import rospy
 import time
 from srcsim.msg import Console
@@ -41,9 +35,33 @@ import time
 import sensor_msgs.msg
 from cv_bridge import CvBridge     
 
+ply_header = '''ply
+format ascii 1.0
+element vertex %(vert_num)d
+property float x
+property float y
+property float z
+property uchar red
+property uchar green
+property uchar blue
+end_header
+'''
+
+def write_ply(fn, verts, colors):
+    verts = verts.reshape(-1, 3)
+    colors = colors.reshape(-1, 3)
+    verts = np.hstack([verts, colors])
+    with open(fn, 'wb') as f:
+        f.write((ply_header % dict(vert_num=len(verts))).encode('utf-8'))
+        np.savetxt(f, verts, fmt='%f %f %f %d %d %d ')
+
+
 class Find_leds:
+    #Q = np.array(4, 4, cv2.CV_64F)
     
+        
     def __init__(self):
+        
         self.light_on = False
 	self.cnt=0
         self.light_cnt =0
@@ -70,7 +88,6 @@ class Find_leds:
 
         #self.rt_cam = rospy.Subscriber('/multisense/camera/right/image_raw', Image)
 
-
         rospy.init_node('ros_video')
         # Wait for subscribers to hook up, lest they miss our commands
         time.sleep(2.0)
@@ -86,22 +103,66 @@ class Find_leds:
         self.cnt+=1
         #print 'go**************************'
         global roi,roi2
+        #print ('l or r', lf_rt)
         if lf_rt=='left':
 
             self.img = br.imgmsg_to_cv2(imgmsg, "bgr8")
             img  = self.img
         else:
+            #print ( lf_rt)
             self.rt_img = br.imgmsg_to_cv2(imgmsg, "bgr8")
         #print('cnt = ',self.cnt)
         #get right camera image
-        if self.cnt==4:
+        
+        if self.cnt%2==0 and self.cnt==8:
+
+            cv2.imwrite('left.jpg',self.img)
+            cv2.imwrite('right.jpg',self.rt_img)
+
             #print('cnt = 4 ',self.cnt)
-            stereo = cv2.StereoBM(1,16, 15)
+            #stereo = cv2.StereoBM(1,16, 15)
+
+            # disparity range is tuned for 'aloe' image pair
+            window_size = 3
+            min_disp = 16
+            num_disp = 112-min_disp
+            
+            stereo = cv2.StereoSGBM()
+            stereo.minDisparity = min_disp 
+            stereo.numberOfDisparities = num_disp
+            #stereo.blockSize = 16
+            stereo.P1 = 8*3*window_size**2
+            stereo.P2 = 32*3*window_size**2
+            stereo.disp12MaxDiff = 1
+            stereo.uniquenessRatio = 10
+            stereo.speckleWindowSize = 100
+            stereo.speckleRange = 32
+            
 	    frame1_new = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
 	    frame2_new = cv2.cvtColor(self.rt_img, cv2.COLOR_BGR2GRAY)
-            disparity = stereo.compute(frame1_new,frame2_new)
+            disp = stereo.compute(frame1_new,frame2_new)
+            points = disp.copy()
 
-            plt.imshow(disparity,'gray')
+            h, w = frame1_new.shape[:2]
+            f = 0.622*w    # guess for focal length - width ~4.5m depth ~2.8m
+            #print ('width, focal len =', w, f)
+
+            Q = np.float32([[1, 0, 0, -0.5*w],
+                    [0,-1, 0,  0.5*h], # turn points 180 deg around x-axis,
+                    [0, 0, 0,     -f], # so that y-axis looks up
+                    [0, 0, 1, 0]])
+            
+            points = cv2.reprojectImageTo3D(disp, Q)
+            cv2.imshow('depth',points)
+            plt.imshow(points,'gray')
+            
+            colors = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
+            mask = disp > disp.min()
+            out_points = points[mask]
+            out_colors = colors[mask]
+            out_fn = 'out.ply'
+            write_ply('out.ply', out_points, out_colors)
+
             #plt.show()
 
         if lf_rt=='left':        
