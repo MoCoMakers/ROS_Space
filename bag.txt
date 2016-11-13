@@ -1,0 +1,89 @@
+path:        2016-11-12-20-49-52.bag
+version:     2.0
+duration:    1:03s (63s)
+start:       Dec 31 1969 19:00:17.73 (17.73)
+end:         Dec 31 1969 19:01:21.64 (81.64)
+size:        2.9 GB
+messages:    1146793
+compression: none [1947/1947 chunks]
+types:       dynamic_reconfigure/Config                              [958f16a05573709014982821e6822580]
+             dynamic_reconfigure/ConfigDescription                   [757ce9d44ba8ddd801bb30bc456f946f]
+             gazebo_msgs/LinkStates                                  [48c080191eb15c41858319b4d8a609c2]
+             gazebo_msgs/ModelStates                                 [48c080191eb15c41858319b4d8a609c2]
+             geometry_msgs/Point32                                   [cc153912f1453b708d221682bc23d9ac]
+             geometry_msgs/WrenchStamped                             [d78d3cb249ce23087ade7e7d0c40cfa7]
+             ihmc_msgs/ArmTrajectoryRosMessage                       [4ab9ab46f4ebce2c74158909c5660ff8]
+             ihmc_msgs/ChestTrajectoryRosMessage                     [b9072f61b03274f7f0eaf948be587874]
+             ihmc_msgs/FootstepDataListRosMessage                    [411aa9c5c195e1be5bc3353c68e418f3]
+             ihmc_msgs/FootstepStatusRosMessage                      [c52c5620427048a8807fa8b2dcd2ba32]
+             ihmc_msgs/HighLevelStateChangeStatusRosMessage          [abe0f16b5272df7cab1198f126f05a9f]
+             ihmc_msgs/Point2dRosMessage                             [209f516d3eb691f0663e25cb750d67c1]
+             ihmc_msgs/WalkingStatusRosMessage                       [b0a73288471d327ae20e972dca1096b9]
+             ihmc_valkyrie_ros/ValkyrieLowLevelControlModeRosMessage [13e2614263a0c26dc88c96cd713c3290]
+             nav_msgs/Odometry                                       [cd5e73d190d741a2f92e81eda573aca7]
+             rosgraph_msgs/Clock                                     [a9c97c1d230cfc112e270351a944ee47]
+             rosgraph_msgs/Log                                       [acffd30cd6b6de30f120938c17c593fb]
+             sensor_msgs/CameraInfo                                  [c9a58c1b0b154e0e6da7578cb991d214]
+             sensor_msgs/Image                                       [060021388200f6f0f447d0fcd9c64743]
+             sensor_msgs/Imu                                         [6a62c6daae103f4ff57a132d6f95cec2]
+             sensor_msgs/JointState                                  [3066dcd76a6cfaef579bd0f34173e9fd]
+             sensor_msgs/LaserScan                                   [90c7ef2dc6895d81024acba2ac42f369]
+             std_msgs/Bool                                           [8b94c1b53db61fb6aed406028ad6332a]
+             std_msgs/Float32                                        [73fcbf46b49191e672908e50842a83d4]
+             std_msgs/Float64                                        [fdb28210bfa9d7c91146260178d9a584]
+             std_msgs/Int32                                          [da5909fbe378aeaf85e547e830cc1bb7]
+             std_msgs/String                                         [992ce8a1687cec8c8bd883ec73ca41d1]
+             tf2_msgs/TFMessage                                      [94810edda583a504dfda3829e70d7eec]
+             val_hardware_msgs/valAtiSensor                          [7fa52a36b9e118339acc1549922722b5]
+             val_hardware_msgs/valImuSensor                          [07ba66b2d6a6e5443948f24d5c0f7cef]
+topics:      /clock                                                             63927 msgs    : rosgraph_msgs/Clock                                    
+             /force_torque_states                                               31912 msgs    : val_hardware_msgs/valAtiSensor                         
+             /gazebo/link_states                                                63879 msgs    : gazebo_msgs/LinkStates                                 
+             /gazebo/model_states                                               63879 msgs    : gazebo_msgs/ModelStates                                
+             /gazebo/parameter_descriptions                                         1 msg     : dynamic_reconfigure/ConfigDescription                  
+             /gazebo/parameter_updates                                              1 msg     : dynamic_reconfigure/Config                             
+             /hardware_joint_commands                                           31949 msgs    : sensor_msgs/JointState                                 
+             /hardware_joint_states                                             31961 msgs    : sensor_msgs/JointState                                 
+             /ihmc_ros/valkyrie/control/arm_trajectory                              3 msgs    : ihmc_msgs/ArmTrajectoryRosMessage                      
+             /ihmc_ros/valkyrie/control/chest_trajectory                            1 msg     : ihmc_msgs/ChestTrajectoryRosMessage                    
+             /ihmc_ros/valkyrie/control/footstep_list                               2 msgs    : ihmc_msgs/FootstepDataListRosMessage                   
+             /ihmc_ros/valkyrie/control/low_level_control_mode                      1 msg     : ihmc_valkyrie_ros/ValkyrieLowLevelControlModeRosMessage
+             /ihmc_ros/valkyrie/output/behavior                                 31967 msgs    : std_msgs/Int32                                         
+             /ihmc_ros/valkyrie/output/capturability/capture_point              12329 msgs    : ihmc_msgs/Point2dRosMessage                            
+             /ihmc_ros/valkyrie/output/capturability/center_of_mass             12329 msgs    : geometry_msgs/Point32                                  
+             /ihmc_ros/valkyrie/output/capturability/desired_capture_point      12329 msgs    : ihmc_msgs/Point2dRosMessage                            
+             /ihmc_ros/valkyrie/output/capturability/is_in_double_support       12329 msgs    : std_msgs/Bool                                          
+             /ihmc_ros/valkyrie/output/foot_force_sensor/left                   31968 msgs    : geometry_msgs/WrenchStamped                            
+             /ihmc_ros/valkyrie/output/foot_force_sensor/right                  31967 msgs    : geometry_msgs/WrenchStamped                            
+             /ihmc_ros/valkyrie/output/footstep_status                             37 msgs    : ihmc_msgs/FootstepStatusRosMessage                     
+             /ihmc_ros/valkyrie/output/high_level_state_change                      2 msgs    : ihmc_msgs/HighLevelStateChangeStatusRosMessage         
+             /ihmc_ros/valkyrie/output/imu/pelvis_pelvisMiddleImu               31949 msgs    : sensor_msgs/Imu                                        
+             /ihmc_ros/valkyrie/output/imu/pelvis_pelvisRearImu                 31929 msgs    : sensor_msgs/Imu                                        
+             /ihmc_ros/valkyrie/output/imu/torso_leftTorsoImu                   31930 msgs    : sensor_msgs/Imu                                        
+             /ihmc_ros/valkyrie/output/imu/upperNeckPitchLink_head_imu_sensor   31948 msgs    : sensor_msgs/Imu                                        
+             /ihmc_ros/valkyrie/output/joint_states                             31930 msgs    : sensor_msgs/JointState                                 
+             /ihmc_ros/valkyrie/output/robot_motion_status                      31949 msgs    : std_msgs/String                                        
+             /ihmc_ros/valkyrie/output/robot_pose                               31948 msgs    : nav_msgs/Odometry                                      
+             /ihmc_ros/valkyrie/output/walking_status                               4 msgs    : ihmc_msgs/WalkingStatusRosMessage                      
+             /imu_states                                                        31942 msgs    : val_hardware_msgs/valImuSensor                         
+             /leftTorsoImu/imu                                                  63877 msgs    : sensor_msgs/Imu                                        
+             /multisense/camera/left/camera_info                                  640 msgs    : sensor_msgs/CameraInfo                                 
+             /multisense/camera/left/image_raw                                    640 msgs    : sensor_msgs/Image                                      
+             /multisense/camera/left/parameter_descriptions                         1 msg     : dynamic_reconfigure/ConfigDescription                  
+             /multisense/camera/left/parameter_updates                              1 msg     : dynamic_reconfigure/Config                             
+             /multisense/camera/right/camera_info                                 640 msgs    : sensor_msgs/CameraInfo                                 
+             /multisense/camera/right/image_raw                                   639 msgs    : sensor_msgs/Image                                      
+             /multisense/camera/right/parameter_descriptions                        1 msg     : dynamic_reconfigure/ConfigDescription                  
+             /multisense/camera/right/parameter_updates                             1 msg     : dynamic_reconfigure/Config                             
+             /multisense/imu                                                    63919 msgs    : sensor_msgs/Imu                                        
+             /multisense/joint_states                                           63917 msgs    : sensor_msgs/JointState                                 
+             /multisense/lidar_scan                                              2553 msgs    : sensor_msgs/LaserScan                                  
+             /pelvisMiddleImu/imu                                               63877 msgs    : sensor_msgs/Imu                                        
+             /pelvisRearImu/imu                                                 63918 msgs    : sensor_msgs/Imu                                        
+             /rosout                                                               50 msgs    : rosgraph_msgs/Log                                       (7 connections)
+             /rosout_agg                                                           19 msgs    : rosgraph_msgs/Log                                      
+             /rtt_period_overflow                                               31907 msgs    : std_msgs/Float64                                       
+             /rtt_rate                                                          31933 msgs    : std_msgs/Float64                                       
+             /tf                                                                69956 msgs    : tf2_msgs/TFMessage                                      (2 connections)
+             /valkyrie/harness/detach                                               1 msg     : std_msgs/Bool                                          
+             /valkyrie/harness/velocity                                             1 msg     : std_msgs/Float32
