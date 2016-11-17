@@ -152,7 +152,11 @@ class Find_leds:
                     [0, 0, 0,     -f], # so that y-axis looks up
                     [0, 0, 1, 0]])
             
-            points = cv2.reprojectImageTo3D(disp, Q)
+            points = cv2.reprojectImageTo3D(disp, Q)     
+            f=open('points','w')
+            f.write(points)
+            f.close()
+
             cv2.imshow('depth',points)
             plt.imshow(points,'gray')
             
